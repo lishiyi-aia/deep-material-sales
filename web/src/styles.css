@@ -379,9 +379,12 @@ canvas {
 }
 
 .tl-entry:last-child {
-  /* 末条（zooop）尾部空间：与 .resume 底部 padding 合计约 70vh，
-     使滚到底时末条顶部正好停在视口 30vh（NODE_LINE）处、动画走满第 250 帧 */
+  /* Keep the tail space after the profile while the last camera anchor stays at frame 250. */
   padding-bottom: 38vh;
+}
+
+.tl-entry--last-anchor {
+  padding-bottom: clamp(32px, 5vh, 56px);
 }
 
 .tl-dot {
@@ -1678,9 +1681,10 @@ canvas {
   }
 }
 
-/* Sales profile follows the existing timeline without introducing another camera stop. */
-.profile-summary { position: relative; z-index: 2; width: min(760px, calc(100% - 48px)); margin: 0 7vw 80px auto; padding: 28px 30px; color: #fff; background: rgba(10, 15, 23, .68); border: 1px solid rgba(255,255,255,.16); border-radius: 10px; backdrop-filter: blur(12px); }
-.profile-summary h3 { font-size: 22px; margin: 0 0 18px; font-weight: 500; }
-.profile-summary ul { list-style: none; padding: 0; margin: 0; }
-.profile-summary li { font-size: 14px; line-height: 1.85; margin: 9px 0; overflow-wrap: anywhere; }
-@media (max-width: 700px) { .profile-summary { margin: 0 auto 48px; width: calc(100% - 32px); padding: 22px 20px; } }
+/* The profile continues the resume column and timeline instead of using a separate card. */
+@media (max-width: 640px) {
+  .tl-summary .tl-body {
+    background: none;
+    border-radius: 0;
+  }
+}

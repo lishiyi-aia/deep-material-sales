@@ -135,7 +135,7 @@ const itemV = {
 function Entry({ entry, index }: { entry: ResumeEntry; index: number }) {
   return (
     <motion.div
-      className="tl-entry"
+      className={`tl-entry${index === POINT_ORDER.length - 1 ? ' tl-entry--last-anchor' : ''}`}
       data-point={POINT_ORDER[index]}
       variants={containerV}
       initial="hidden"
@@ -188,17 +188,28 @@ export default function Resume({ lang }: { lang: 'en' | 'zh' }) {
         {data.entries.map((e, i) => (
           <Entry key={i} entry={e} index={i} />
         ))}
-      </div>
-      <div className="profile-summary">
-        <h3>{lang === 'zh' ? '综合评价' : 'Professional Profile'}</h3>
-        <ul>{(lang === 'zh' ? resumeSnapshot.summary : [
+        <motion.div
+          className="tl-entry tl-summary"
+          variants={containerV}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: '-12% 0px -12% 0px' }}
+        >
+          <motion.span className="tl-dot" variants={itemV} aria-hidden="true" />
+          <div className="tl-body">
+            <motion.div className="tl-head" variants={itemV}>
+              <h3 className="tl-place">{lang === 'zh' ? '综合评价' : 'Professional Profile'}</h3>
+            </motion.div>
+            <motion.ul className="tl-points" variants={itemV}>{(lang === 'zh' ? resumeSnapshot.summary : [
           'Profile: Master of Marketing candidate with AI product operations, university client communication and partnership experience; English is a working language. Targeting B2B and research sales.',
           'Customer communication: Understand needs and use cases, prepare product and partnership materials, and follow up on trial feedback and progress.',
           'Business coordination: Support demos, discussions and agreement workflows; track project milestones with product, business and finance teams.',
           'AI tools: Use AI-assisted dashboards and data analysis; organize recurring follow-up and document work into SOPs, checklists and templates.',
           'Data tools: Excel, SPSS and basic SQL.',
           'Market support: English content, Xiaohongshu, WeChat and Instagram; Canva, Jianying and basic Figma.'
-        ]).map((point) => <li key={point}>{point}</li>)}</ul>
+            ]).map((point) => <li key={point}>{point}</li>)}</motion.ul>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
