@@ -884,6 +884,7 @@ canvas {
 
 /* 小横图：右侧错落（align-self 右对齐 + 内缩留白），不抢主体 */
 .wk-card-cover {
+  display: block;
   position: relative;
   flex: none;
   align-self: flex-end;
@@ -1052,6 +1053,7 @@ canvas {
 
 /* 整行按钮：标题靠左、明确操作提示靠右；hover 暖色微缩进 */
 .wk-line-btn {
+  text-decoration: none;
   position: relative;
   display: flex;
   align-items: center;
@@ -1688,3 +1690,7 @@ canvas {
     border-radius: 0;
   }
 }
+
+.wk-card-cover:focus-visible { outline: 2px solid #ffd9b3; outline-offset: -4px; }
+.wk-card-title a { color: inherit; text-decoration: none; }
+.wk-card-title a:focus-visible { outline: 2px solid #ffd9b3; outline-offset: 4px; }

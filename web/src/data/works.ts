@@ -64,6 +64,7 @@ export const WORKS: Record<WorkLanguage, WorksLang> = {
           "name": "AI 教育产品客户合作与试点推进",
           "meta": "从需求确认、产品演示到协议跟进与项目交接。",
           "slug": "ai-education-partnership",
+          "link": "projects/ai-education-partnership/case_study.html",
           "tags": [
             "客户跟进：维护需求与试用台账，准备产品介绍和合作资料",
             "演示试点：落实账号、培训资料及责任人，跟进使用问题",
@@ -83,6 +84,7 @@ export const WORKS: Record<WorkLanguage, WorksLang> = {
           "name": "AI 产品需求洞察与渠道获客",
           "meta": "以用户洞察组织产品表达，连接触达、注册与首次使用。",
           "slug": "ai-news-dashboard",
+          "link": "projects/ai-news-dashboard/case_study.html",
           "tags": [
             "需求洞察：价格问卷与用户反馈，判断需求和付费意愿",
             "价值表达：100+产品内容，配合金融、AI博主与科技活动推广",
@@ -102,6 +104,7 @@ export const WORKS: Record<WorkLanguage, WorksLang> = {
           "name": "ZUS Coffee 新品卖点与渠道推广",
           "meta": "将用户与竞品调研转成卖点、英文内容及渠道推广。",
           "slug": "zus-everywhere",
+          "link": "projects/zus-everywhere/case_study.html",
           "tags": [
             "市场调研：结合目标用户偏好及竞品内容，提炼新品卖点",
             "英文内容：参与50条Instagram发布，支持拍摄、剪辑与文案",
@@ -136,6 +139,7 @@ export const WORKS: Record<WorkLanguage, WorksLang> = {
           "name": "AI Education Client Partnerships & Pilot Follow-up",
           "meta": "Connecting needs, product demos, agreement support and handoff.",
           "slug": "ai-education-partnership",
+          "link": "projects/ai-education-partnership/case_study.html",
           "tags": [
             "Client follow-up: Maintained needs and trial records and prepared product and partnership materials",
             "Pilot coordination: Organized accounts and training materials; tracked owners and usage issues",
@@ -155,6 +159,7 @@ export const WORKS: Record<WorkLanguage, WorksLang> = {
           "name": "AI Product Insight & Customer Acquisition",
           "meta": "From customer insight and product communication to registration and first use.",
           "slug": "ai-news-dashboard",
+          "link": "projects/ai-news-dashboard/case_study.html",
           "tags": [
             "Research: Used pricing surveys and feedback to understand needs and willingness to pay",
             "Product value: Produced 100+ posts and supported finance/AI creator and event promotion",
@@ -174,6 +179,7 @@ export const WORKS: Record<WorkLanguage, WorksLang> = {
           "name": "ZUS Coffee Product Messaging & Channel Promotion",
           "meta": "Turning audience and competitor research into messaging, English content and channel support.",
           "slug": "zus-everywhere",
+          "link": "projects/zus-everywhere/case_study.html",
           "tags": [
             "Research: Combined audience preferences and competitor content to develop product messages",
             "English content: Contributed to 50 Instagram posts through production, editing and copy",

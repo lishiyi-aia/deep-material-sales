@@ -1,24 +1,16 @@
 import { useEffect, useRef, useState, type Ref } from 'react'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import rehypeRaw from 'rehype-raw'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { WORKS, SECTION_COVERS, type WorkListItem, type WorkSection, type WorksLang } from '../data/works'
-import { getWorkDoc } from '../data/workDocs'
 
-const EASE = [0.22, 1, 0.36, 1]
-
-// 极简清单的一行：作品名与副标题靠左，明确操作提示靠右；整行可点开全屏详情
+// The project title links directly to the complete case, with no intermediate dialog.
 function WorkLine({
   item,
-  onOpen,
   actionLabel,
 }: {
   item: WorkListItem
-  onOpen: (item: WorkListItem) => void
   actionLabel: string
 }) {
-  const canOpen = Boolean(item.slug || item.link)
+  const canOpen = Boolean(item.link)
 
   const content = (
     <>
@@ -38,9 +30,9 @@ function WorkLine({
   return (
     <li className="wk-line">
       {canOpen ? (
-        <button className="wk-line-btn" onClick={() => onOpen(item)}>
+        <a className="wk-line-btn" href={item.link}>
           {content}
-        </button>
+        </a>
       ) : (
         <span className="wk-line-btn" aria-disabled="true">
           {content}
@@ -64,22 +56,21 @@ function WorkLine({
 function SectionCard({
   section,
   data,
-  onOpen,
 }: {
   section: WorkSection
   data: WorksLang
-  onOpen: (item: WorkListItem) => void
 }) {
   const [coverError, setCoverError] = useState(false)
   const cover = SECTION_COVERS[section.id]
+  const coverLink = section.items?.[0]?.link
   return (
     <div className="wk-card">
       <div className="wk-card-head">
         <span className="wk-card-no">{section.no}</span>
-        <h3 className="wk-card-title">{section.title}</h3>
+        <h3 className="wk-card-title"><a href={coverLink}>{section.title}</a></h3>
         <span className="wk-card-tagline">{section.tagline}</span>
       </div>
-      <div className="wk-card-cover">
+      <a className="wk-card-cover" href={coverLink} aria-label={`${section.title} · ${data.visitLabel}`}>
         {cover && !coverError ? (
           <img
             src={cover}
@@ -93,8 +84,8 @@ function SectionCard({
             <span className="wk-card-cover-no">{section.no}</span>
           </div>
         )}
-      </div>
-      <SectionWorks section={section} data={data} onOpen={onOpen} />
+      </a>
+      <SectionWorks section={section} data={data} />
     </div>
   )
 }
@@ -103,18 +94,16 @@ function SectionCard({
 function SectionWorks({
   section,
   data,
-  onOpen,
 }: {
   section: WorkSection
   data: WorksLang
-  onOpen: (item: WorkListItem) => void
 }) {
   return (
     <div className="wk-card-body">
       {section.items && (
         <ul className="wk-list">
           {section.items.map((it, i) => (
-            <WorkLine key={i} item={it} onOpen={onOpen} actionLabel={data.visitLabel} />
+            <WorkLine key={i} item={it} actionLabel={data.visitLabel} />
           ))}
         </ul>
       )}
@@ -125,7 +114,7 @@ function SectionWorks({
             <div className="wk-sub-head">{g.heading}</div>
             <ul className="wk-list">
               {g.items.map((it, i) => (
-                <WorkLine key={i} item={{ name: it }} onOpen={onOpen} actionLabel={data.visitLabel} />
+                <WorkLine key={i} item={{ name: it }} actionLabel={data.visitLabel} />
               ))}
             </ul>
           </div>
@@ -146,124 +135,10 @@ function SectionWorks({
   )
 }
 
-// 全屏沉浸详情：渲染该作品的 md（banner + 标题 + markdown 正文 + 外链）；
-// 无 md 时回退到占位 banner + meta/标签简介
-function WorkDetail({
-  item,
-  data,
-  onClose,
-}: {
-  item: WorkListItem
-  data: WorksLang
-  onClose: () => void
-}) {
-  const [bannerError, setBannerError] = useState(false)
-  const doc = getWorkDoc(item.slug)
-  const title = (doc && doc.title) || item.name
-  const banner = doc && doc.banner
-  // 有 md 详情时展示完整信息；无 md 时详情页只保留标题 + 统一占位文案
-  const link = doc ? doc.link || item.link : null
-  const tags = doc ? doc.tags || item.tags : null
-  // 副标题不含年份；标签单独做 badge 展示
-  const sub = doc ? [item.meta, doc.role].filter(Boolean).join('  ·  ') : ''
-
-  return (
-    <>
-      <motion.div
-        className="wk-detail-backdrop"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        onClick={onClose}
-      />
-      <motion.div
-        className="wk-detail"
-        initial={{ opacity: 0, scale: 0.985, y: 8 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.99, y: 6 }}
-        transition={{ duration: 0.42, ease: EASE }}
-      >
-        <div className="wk-detail-toolbar">
-          <button
-            type="button"
-            className="wk-detail-close"
-            onClick={onClose}
-            aria-label={data.closeLabel}
-            title={data.closeLabel}
-          >
-            ✕
-          </button>
-        </div>
-
-        <div className="wk-detail-scroll">
-          {banner && !bannerError ? (
-            <div className="wk-detail-banner">
-              <img src={banner} alt={title} onError={() => setBannerError(true)} />
-            </div>
-          ) : (
-            <div className="wk-detail-banner is-ph" aria-hidden="true">
-              <span className="wk-detail-ph-text">{title}</span>
-            </div>
-          )}
-
-          <article className="wk-detail-article">
-            <header className="wk-detail-head">
-              <h3 className="wk-detail-title">{title}</h3>
-              {sub && <div className="wk-detail-sub">{sub}</div>}
-              {tags && tags.length > 0 && (
-                <div className="wk-detail-tags">
-                  {tags.map((t, i) => (
-                    <span key={i} className="wk-badge">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              )}
-            </header>
-
-            {doc && doc.body ? (
-              <div className="wk-md">
-                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
-                  {doc.body}
-                </ReactMarkdown>
-              </div>
-            ) : (
-              // 无 md：演示详情页支持的组件 —— 介绍文本 + 图片/视频占位 + 跳转按钮
-              <>
-                <p className="wk-detail-desc">{data.detailPlaceholder}</p>
-                <div className="wk-detail-ph-img" aria-hidden="true">
-                  <span className="wk-detail-ph-img-label">{data.phImageLabel}</span>
-                </div>
-                <span className="wk-detail-link is-ph" role="button" aria-disabled="true">
-                  {data.phButtonLabel} <span aria-hidden="true">↗</span>
-                </span>
-              </>
-            )}
-
-            {link && (
-              <a
-                className="wk-detail-link"
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {data.visitLabel} <span aria-hidden="true">↗</span>
-              </a>
-            )}
-          </article>
-        </div>
-      </motion.div>
-    </>
-  )
-}
-
 export default function Works({ lang, innerRef }: { lang: 'en' | 'zh'; innerRef: Ref<HTMLElement> }) {
   const data = WORKS[lang]
   const sections = data.sections
   const count = sections.length
-
-  const [active, setActive] = useState<WorkListItem | null>(null) // 当前打开详情的作品 item
 
   // 竖滚 pin 转横移：测量整排卡片的实际可横移距离（px），竖滚进度 → 横移
   const galleryRef = useRef<HTMLDivElement>(null)
@@ -294,19 +169,6 @@ export default function Works({ lang, innerRef }: { lang: 'en' | 'zh'; innerRef:
   // 横移到底时「继续下滑」提示渐隐
   const hintOpacity = useTransform(scrollYProgress, [0.85, 1], [1, 0])
 
-  // 详情打开时锁滚动 + ESC 关闭
-  useEffect(() => {
-    if (!active) return
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setActive(null)
-    window.addEventListener('keydown', onKey)
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      window.removeEventListener('keydown', onKey)
-      document.body.style.overflow = prev
-    }
-  }, [active])
-
   return (
     <section className="works" lang={lang} ref={innerRef}>
       <div
@@ -319,7 +181,7 @@ export default function Works({ lang, innerRef }: { lang: 'en' | 'zh'; innerRef:
 
           <motion.div className="wk-track" ref={trackRef} style={{ x }}>
             {sections.map((s) => (
-              <SectionCard key={s.id} section={s} data={data} onOpen={setActive} />
+              <SectionCard key={s.id} section={s} data={data} />
             ))}
           </motion.div>
 
@@ -331,17 +193,6 @@ export default function Works({ lang, innerRef }: { lang: 'en' | 'zh'; innerRef:
           </motion.span>
         </div>
       </div>
-
-      <AnimatePresence>
-        {active && (
-          <WorkDetail
-            key={active.slug || active.name}
-            item={active}
-            data={data}
-            onClose={() => setActive(null)}
-          />
-        )}
-      </AnimatePresence>
     </section>
   )
 }

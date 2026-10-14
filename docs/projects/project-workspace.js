@@ -84,6 +84,7 @@
     };
     const evidence = $('.evidence', sections.content);
     const production = node('details', 'evidence-drawer production-drawer', `<summary>${icon('clapperboard')}<span>内容制作与发布工作</span>${icon('chevron-down')}</summary>`);
+    production.open = true;
     const productionItems = [...sections.content.children].filter(item => item !== evidence && !item.classList.contains('section-head'));
     evidence.before(production);
     production.append(...productionItems);
@@ -154,9 +155,9 @@
   const totalSteps = config.steps.length;
   const totalLabel = String(totalSteps).padStart(2, '0');
   const resultId = project === 'partnership' ? 'outcome' : 'results';
-  const workspace = node('div', 'workspace report');
+  const workspace = node('div', 'workspace report is-full-read');
   workspace.id = 'workspace';
-  workspace.innerHTML = `<aside class="workspace-rail"><p class="rail-label">PROJECT WORKFLOW <span>05 STEPS</span></p><div class="workflow-tabs" role="tablist" aria-label="项目工作流程" aria-orientation="vertical">${config.steps.map((step, i) => `<button type="button" role="tab" id="step-${step.id}" aria-controls="panel-${step.id}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-step="${i}"><span class="step-number">0${i + 1}</span><span class="step-text"><strong>${step.title}</strong><small>${step.sub}</small></span>${icon(step.icon)}</button>`).join('')}</div><div class="rail-ownership"><span>我的职责</span><p>${config.ownership}</p></div><p class="rail-note">${config.note}</p></aside><div class="workspace-body"><div class="workspace-toolbar"><span class="workspace-breadcrumb"></span><div class="workspace-actions"><button type="button" class="read-mode" aria-pressed="false">${icon('rows-3')}<span>完整阅读</span></button><a href="#results" class="tool-link">${icon('clipboard-check')}<span>工作结果</span>${icon('arrow-up-right')}</a></div></div><div class="workspace-panels"></div><nav class="workflow-footer" aria-label="流程翻页"><button type="button" class="step-prev" aria-label="上一步">${icon('arrow-left')}<span>上一步</span></button><span class="step-position" aria-live="polite"></span><button type="button" class="step-next"><span></span>${icon('arrow-right')}</button></nav></div>`;
+  workspace.innerHTML = `<aside class="workspace-rail"><p class="rail-label">PROJECT WORKFLOW <span>05 STEPS</span></p><div class="workflow-tabs" role="tablist" aria-label="项目工作流程" aria-orientation="vertical">${config.steps.map((step, i) => `<button type="button" role="tab" id="step-${step.id}" aria-controls="panel-${step.id}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-step="${i}"><span class="step-number">0${i + 1}</span><span class="step-text"><strong>${step.title}</strong><small>${step.sub}</small></span>${icon(step.icon)}</button>`).join('')}</div><div class="rail-ownership"><span>我的职责</span><p>${config.ownership}</p></div><p class="rail-note">${config.note}</p></aside><div class="workspace-body"><div class="workspace-toolbar"><span class="workspace-breadcrumb"></span><div class="workspace-actions"><button type="button" class="read-mode" aria-pressed="true">${icon('rows-3')}<span>分步阅读</span></button><a href="#results" class="tool-link">${icon('clipboard-check')}<span>工作结果</span>${icon('arrow-up-right')}</a></div></div><div class="workspace-panels"></div><nav class="workflow-footer" aria-label="流程翻页"><button type="button" class="step-prev" aria-label="上一步">${icon('arrow-left')}<span>上一步</span></button><span class="step-position" aria-live="polite"></span><button type="button" class="step-next"><span></span>${icon('arrow-right')}</button></nav></div>`;
   $('.rail-label span', workspace).textContent = `${totalLabel} STEPS`;
   $('.tool-link', workspace).href = `#${resultId}`;
   const disclosure = $('.disclosure');
@@ -174,6 +175,7 @@
       content.classList.remove('wrap');
       if (id === 'overview') {
         const details = node('details', 'evidence-drawer responsibilities-drawer', `<summary>${icon('briefcase-business')}<span>项目背景与我的职责</span>${icon('chevron-down')}</summary>`);
+        details.open = true;
         details.append(content);
         panel.append(details);
       } else panel.append(content);
@@ -208,7 +210,7 @@
   sections[resultId].append(resultLoop);
 
   let active = 0;
-  let fullRead = false;
+  let fullRead = true;
   const tabs = $$('.workflow-tabs button', workspace);
   const motion = () => matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
   function selectStep(index, { scroll = false, hash = true } = {}) {

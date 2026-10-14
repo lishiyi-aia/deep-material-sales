@@ -13,7 +13,7 @@
   const sections = Object.fromEntries(steps.flatMap(step => step.sections).map(id => [id, document.getElementById(id)]));
   const main = $('main');
   const workspace = document.createElement('div');
-  workspace.className = 'workspace report';
+  workspace.className = 'workspace report is-full-read';
   workspace.id = 'workspace';
   workspace.innerHTML = `
     <aside class="workspace-rail">
@@ -25,7 +25,7 @@
       <p class="rail-note">内部用户明细与博主身份不公开，工具内置数据为模拟演示。</p>
     </aside>
     <div class="workspace-body">
-      <div class="workspace-toolbar"><span class="workspace-breadcrumb"><b>01</b> / 05 <span>${steps[0].title}</span></span><div class="workspace-actions"><button type="button" class="read-mode" aria-pressed="false">${icon('rows-3')}<span>完整阅读</span></button><a href="operations_dashboard.html" class="tool-link">${icon('chart-no-axes-combined')}<span>归因面板</span>${icon('arrow-up-right')}</a></div></div>
+      <div class="workspace-toolbar"><span class="workspace-breadcrumb"><b>01</b> / 05 <span>${steps[0].title}</span></span><div class="workspace-actions"><button type="button" class="read-mode" aria-pressed="true">${icon('rows-3')}<span>分步阅读</span></button><a href="operations_dashboard.html" class="tool-link">${icon('chart-no-axes-combined')}<span>归因面板</span>${icon('arrow-up-right')}</a></div></div>
       <div class="workspace-panels"></div>
       <nav class="workflow-footer" aria-label="流程翻页"><button type="button" class="step-prev" aria-label="上一步">${icon('arrow-left')}<span>上一步</span></button><span class="step-position" aria-live="polite">01 / 05</span><button type="button" class="step-next"><span>下一步：${steps[1].title}</span>${icon('arrow-right')}</button></nav>
     </div>`;
@@ -56,7 +56,7 @@
       } else panel.append(section);
     });
     $('.workspace-panels', workspace).append(panel);
-    panel.hidden = index !== 0;
+    panel.hidden = false;
     return panel;
   });
   $$('main > .band').forEach(band => band.remove());
@@ -84,7 +84,7 @@
   $('#research .review-journey').hidden = true;
 
   let active = 0;
-  let fullRead = false;
+  let fullRead = true;
   const stepTabs = $$('.workflow-tabs [role="tab"]');
   const motion = () => matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
   const rootTarget = () => workspace.scrollIntoView({ behavior: motion(), block: 'start' });
