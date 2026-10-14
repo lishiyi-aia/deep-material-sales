@@ -1,0 +1,11 @@
+web/node_modules/
+web/dist/
+*.tsbuildinfo
+.DS_Store
+qa/
+preview/
+github-publish.mjs
+github-publication.json
+original-source-checksums.json
+verification.json
+github-live-check.json

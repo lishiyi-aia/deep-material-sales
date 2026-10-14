@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="高校与东南亚 AI 教育产品客户合作：协助需求确认、产品演示、试用反馈、协议流转和项目交接，形成持续跟进的合作记录。">
+  <title>AI 教育产品客户合作与试点推进 | Shiyi Li</title>
+  <style>
+    :root {
+      --ink: #202e2a; --forest: #163c32; --green: #08765d; --blue: #245bd0;
+      --pink: #b23768; --gold: #996014; --yellow: #ffe083; --muted: #5c6c66;
+      --line: #d8e1dc; --soft: #f3f6f4; --paper: #fff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font: 16px/1.75 Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; letter-spacing: 0; }
+    h1, h2, h3, h4, p, figure { margin: 0; }
+    h1, h2, h3, h4 { line-height: 1.4; letter-spacing: 0; text-wrap: balance; }
+    p { overflow-wrap: anywhere; }
+    a { color: inherit; text-underline-offset: 4px; }
+    img { display: block; max-width: 100%; height: auto; }
+    button { font: inherit; cursor: pointer; touch-action: manipulation; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    [hidden] { display: none !important; }
+    :focus-visible { outline: 3px solid var(--pink); outline-offset: 5px; }
+    .mono { font-family: "SFMono-Regular", Consolas, monospace; font-variant-numeric: tabular-nums; }
+    .wrap { width: min(1180px, calc(100% - 64px)); margin-inline: auto; }
+    .skip-link { position: fixed; z-index: 100; top: 8px; left: 12px; transform: translateY(-150%); padding: 8px 12px; background: #fff; }
+    .skip-link:focus { transform: none; }
+    .topbar { position: sticky; top: 0; z-index: 30; min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 0 max(32px, calc((100% - 1180px) / 2)); background: #163c32fa; color: #fff; border-bottom: 1px solid #ffffff26; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-size: 13px; font-weight: 700; white-space: nowrap; }
+    .brand-mark { display: grid; place-items: center; width: 28px; height: 28px; border: 1px solid #ffffff80; border-radius: 50%; font-size: 11px; }
+    .topnav { display: flex; gap: 22px; overflow: auto; scrollbar-width: none; }
+    .topnav::-webkit-scrollbar { display: none; }
+    .topnav a { display: inline-flex; align-items: center; flex-shrink: 0; min-height: 44px; color: #d1e2da; font-size: 12px; text-decoration: none; border-bottom: 2px solid transparent; }
+    .topnav a:hover, .topnav a[aria-current="location"] { color: #fff; border-bottom-color: var(--yellow); }
+    .topnav .privacy-link { color: var(--yellow); font-weight: 750; }
+    .hero { position: relative; isolation: isolate; color: #fff; background: var(--forest); }
+    .hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, #102b24fa 0%, #102b24ec 43%, #102b2460 75%, #102b2438 100%), url("../../works/covers/ai-partnership.jpg") center / cover no-repeat; }
+    .hero-inner { padding-block: 64px 54px; }
+    .eyebrow { color: #ffdf8a; font-size: 11px; font-weight: 750; margin-bottom: 22px; }
+    h1 { max-width: 790px; font-size: 56px; font-weight: 850; line-height: 1.22; }
+    .hero-copy { max-width: 630px; margin-top: 25px; color: #e2eee7; font-size: 17px; line-height: 1.9; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 30px; color: #e0e9e3; font-size: 12px; }
+    .hero-meta span { padding-left: 10px; border-left: 2px solid #ffdf8a; }
+    .hero-foot { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-top: 38px; padding-top: 20px; border-top: 1px solid #ffffff40; }
+    .hero-foot p { color: #d1e2da; font-size: 12px; }
+    .hero-foot a { display: inline-flex; gap: 18px; align-items: center; min-height: 44px; color: #ffdf8a; font-size: 13px; font-weight: 700; text-decoration: none; }
+    .confidential { background: var(--yellow); color: #362807; border-bottom: 1px solid #d9b759; scroll-margin-top: 0; }
+    .confidential-inner { display: grid; grid-template-columns: 220px 1fr; gap: 40px; padding-block: 25px; align-items: center; }
+    .confidential-label { display: block; font-size: 19px; line-height: 1.4; }
+    .confidential-label small { display: block; margin-top: 7px; font-size: 10px; font-weight: 650; }
+    .confidential-copy strong { display: block; font-size: 16px; }
+    .confidential-copy p { margin-top: 5px; font-size: 12px; }
+    .band { border-bottom: 1px solid var(--line); }
+    .band.soft { background: var(--soft); }
+    .section { padding-block: 76px; scroll-margin-top: 16px; }
+    .section-head { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: start; gap: 70px; margin-bottom: 36px; }
+    .index { margin-bottom: 12px; color: var(--green); font-size: 11px; font-weight: 750; }
+    h2 { font-size: 36px; font-weight: 800; }
+    h3 { font-size: 21px; }
+    .section-intro { padding-top: 3px; font-size: 15px; color: var(--muted); line-height: 1.95; }
+    .section-intro p + p { margin-top: 12px; }
+    .work-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px; }
+    .work-item { --accent: var(--green); padding-top: 24px; border-top: 3px solid var(--accent); }
+    .work-item:nth-child(2) { --accent: var(--blue); }
+    .work-item:nth-child(3) { --accent: var(--pink); }
+    .work-item:nth-child(4) { --accent: var(--gold); }
+    .work-number { display: block; color: var(--accent); font: 42px/1.1 "SFMono-Regular", Consolas, monospace; margin-bottom: 19px; }
+    .work-item p { margin-top: 12px; font-size: 13px; color: var(--muted); }
+    .timeline { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; padding: 0; margin: 0; list-style: none; }
+    .stage { --accent: var(--green); position: relative; min-width: 0; padding-top: 29px; }
+    .stage:nth-child(2) { --accent: var(--blue); }
+    .stage:nth-child(3) { --accent: var(--pink); }
+    .stage:nth-child(4) { --accent: var(--gold); }
+    .stage::before { content: ""; position: absolute; top: 0; left: 0; right: -22px; height: 3px; background: var(--accent); }
+    .stage:last-child::before { right: 0; }
+    .stage:not(:last-child)::after { content: "→"; position: absolute; top: -18px; right: -18px; color: var(--accent); background: var(--soft); font-size: 23px; padding-inline: 4px; }
+    .stage-top { display: flex; align-items: center; justify-content: space-between; gap: 14px; color: var(--accent); }
+    .stage-top strong { font: 48px/1 "SFMono-Regular", Consolas, monospace; }
+    .stage-top span { font-size: 10px; font-weight: 750; }
+    .stage h3 { font-size: 20px; margin-top: 22px; min-height: 57px; }
+    .stage p { min-height: 80px; margin-top: 12px; color: var(--muted); font-size: 13px; }
+    .stage-output { min-height: 88px; padding-block: 17px; margin-top: 16px; border-top: 1px solid var(--line); }
+    .stage-output small { display: block; font-size: 10px; color: var(--muted); margin-bottom: 5px; }
+    .stage-output strong { display: block; font-size: 12px; font-weight: 650; }
+    .stage a { display: inline-flex; min-height: 44px; align-items: center; gap: 14px; font-size: 12px; color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; }
+    .stage a:hover { background: #e5ece8; }
+    .collaboration-map { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1fr) minmax(0, 1.25fr); gap: 62px; align-items: center; padding-block: 24px; }
+    .partner { position: relative; border-block: 2px solid var(--blue); padding-block: 27px; }
+    .map-label { display: block; color: var(--blue); font-size: 10px; font-weight: 750; margin-bottom: 14px; }
+    .partner h3 { font-size: 24px; }
+    .partner p { color: var(--muted); font-size: 13px; margin-top: 12px; }
+    .partner::after { content: "⇄"; position: absolute; right: -46px; top: 50%; transform: translateY(-50%); color: var(--green); font-size: 25px; }
+    .my-role { position: relative; padding: 30px 26px; background: var(--forest); color: #fff; border-radius: 4px; }
+    .my-role .map-label { color: #a7e6c8; }
+    .my-role h3 { font-size: 25px; line-height: 1.5; }
+    .my-role ul { list-style: none; margin: 22px 0 0; padding: 0; color: #d8e9df; font-size: 13px; }
+    .my-role li { padding-block: 8px; border-top: 1px solid #ffffff2b; }
+    .my-role::after { content: ""; position: absolute; width: 31px; height: 1px; right: -31px; top: 50%; background: #95aea0; }
+    .teams { display: grid; gap: 12px; position: relative; }
+    .teams::before { content: ""; position: absolute; left: -32px; top: 47px; bottom: 47px; border-left: 1px solid #95aea0; }
+    .team { --accent: var(--blue); position: relative; display: grid; grid-template-columns: 35px 1fr; gap: 12px; min-height: 94px; align-items: center; padding: 15px 18px; background: var(--soft); border-left: 3px solid var(--accent); }
+    .team:nth-child(2) { --accent: var(--green); }
+    .team:nth-child(3) { --accent: var(--pink); }
+    .team:nth-child(4) { --accent: var(--gold); }
+    .team::before { content: ""; position: absolute; left: -32px; width: 29px; top: 50%; height: 1px; background: #95aea0; }
+    .team > span { color: var(--accent); font-size: 12px; }
+    .team h4 { font-size: 15px; }
+    .team p { color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .map-note { margin-top: 22px; padding-top: 19px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .followup-table { border-top: 2px solid var(--ink); }
+    .followup-row { display: grid; grid-template-columns: .65fr 1.2fr 1.15fr; gap: 36px; align-items: baseline; padding: 23px 0; border-bottom: 1px solid var(--line); }
+    .followup-row.header { padding-block: 12px; font-size: 11px; color: var(--muted); }
+    .followup-row h3 { font-size: 16px; }
+    .followup-row h3 span { font-size: 11px; color: var(--green); margin-right: 10px; }
+    .followup-row p { font-size: 13px; color: var(--muted); }
+    .followup-row p:last-child { color: var(--ink); }
+    .followup-label { display: none; }
+    .records { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; margin-top: 32px; }
+    .record { padding-top: 16px; border-top: 3px solid var(--green); }
+    .record:nth-child(2) { border-top-color: var(--blue); }
+    .record:nth-child(3) { border-top-color: var(--pink); }
+    .record h4 { font-size: 15px; }
+    .record p { margin-top: 7px; font-size: 12px; color: var(--muted); }
+    .evidence-notice { display: flex; align-items: baseline; gap: 24px; padding: 17px 22px; margin-bottom: 32px; color: #362807; background: var(--yellow); border-left: 4px solid #ae790b; }
+    .evidence-notice strong { flex-shrink: 0; font-size: 14px; }
+    .evidence-notice p { font-size: 12px; }
+    .evidence-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 38px 26px; }
+    .evidence { grid-column: span 2; min-width: 0; scroll-margin-top: 108px; }
+    .evidence:nth-child(-n+2) { grid-column: span 3; }
+    .evidence:target { outline: 3px solid var(--green); outline-offset: 10px; }
+    .evidence-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 12px; }
+    .evidence-heading span { font-size: 12px; color: var(--green); font-weight: 750; }
+    .evidence-heading time { font-size: 11px; color: var(--muted); }
+    .evidence-frame { display: block; position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: #eef0ef; border: 1px solid var(--line); cursor: zoom-in; }
+    .evidence:nth-child(-n+2) .evidence-frame { aspect-ratio: 1.9 / 1; }
+    .evidence-frame img { width: 100%; height: 100%; object-fit: contain; }
+    .evidence-frame:hover { outline: 3px solid var(--green); outline-offset: -3px; }
+    .evidence figcaption { margin-top: 16px; padding-top: 15px; border-top: 1px solid var(--line); }
+    .evidence figcaption strong { display: block; font-size: 16px; }
+    .evidence figcaption p { font-size: 12px; color: var(--muted); margin-top: 7px; }
+    .outcomes-band { color: #fff; background: var(--forest); }
+    .outcomes-band .index { color: #a7e6c8; }
+    .outcomes-band .section-intro { color: #d1e2d9; }
+    .outcome-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-block: 1px solid #ffffff42; }
+    .outcome { padding: 30px 28px; }
+    .outcome:first-child { padding-left: 0; }
+    .outcome + .outcome { border-left: 1px solid #ffffff42; }
+    .outcome span { font-size: 10px; color: #ffdf8a; }
+    .outcome h3 { font-size: 23px; margin-top: 26px; }
+    .outcome p { font-size: 13px; margin-top: 12px; color: #d1e2d9; }
+    .signing-evidence { width: min(820px, 100%); margin: 32px auto 0; }
+    .signing-evidence .evidence-frame { aspect-ratio: 1188 / 573; border-color: #ffffff42; }
+    .signing-evidence figcaption { padding-top: 14px; }
+    .signing-evidence figcaption strong { font-size: 16px; }
+    .signing-evidence figcaption p { margin-top: 4px; color: #d1e2d9; font-size: 13px; }
+    .contribution { display: flex; gap: 26px; margin-top: 30px; align-items: baseline; }
+    .contribution strong { flex-shrink: 0; color: #ffdf8a; font-size: 13px; }
+    .contribution p { color: #d1e2d9; font-size: 13px; }
+    .footer { padding-block: 26px; color: var(--muted); font-size: 11px; }
+    .footer .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .footer a { display: inline-flex; align-items: center; min-height: 44px; color: var(--green); font-weight: 700; }
+    .lightbox { width: min(1320px, calc(100% - 40px)); max-width: none; height: min(920px, calc(100dvh - 40px)); max-height: none; margin: auto; padding: 0; border: 1px solid #ffffff4a; border-radius: 6px; background: #172a23; color: #fff; }
+    .lightbox::backdrop { background: #081510e8; }
+    .lightbox[open] { display: grid; grid-template-rows: auto auto minmax(0, 1fr) auto; }
+    .lightbox-head { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 12px 18px; }
+    .lightbox-head h2 { font-size: 16px; }
+    .icon-button { display: grid; place-items: center; width: 44px; height: 44px; flex-shrink: 0; padding: 0; border: 1px solid #ffffff55; border-radius: 4px; background: transparent; color: #fff; font-size: 25px; }
+    .icon-button:hover:not(:disabled) { background: #ffffff20; }
+    .icon-button:disabled { opacity: .3; cursor: default; }
+    .lightbox-disclosure { padding: 8px 18px; color: #362807; background: var(--yellow); font-size: 12px; font-weight: 650; }
+    .lightbox-visual { min-height: 0; display: grid; place-items: center; padding: 14px; }
+    .lightbox-visual img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+    .lightbox-footer { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; gap: 18px; align-items: center; padding: 12px 18px; border-top: 1px solid #ffffff30; }
+    .lightbox-caption { min-width: 0; text-align: center; }
+    .lightbox-caption p { color: #d1e2d9; font-size: 12px; }
+    .lightbox-caption a { display: inline-flex; align-items: center; min-height: 32px; font-size: 11px; color: #ffdf8a; }
+    @media (max-width: 1000px) {
+      h1 { font-size: 48px; max-width: 720px; } h2 { font-size: 32px; }
+      .topnav { gap: 16px; } .brand { font-size: 12px; }
+      .section-head { gap: 36px; }
+      .confidential-inner { grid-template-columns: 190px 1fr; gap: 26px; }
+      .work-grid { gap: 22px; } .work-item h3 { font-size: 19px; }
+      .timeline { gap: 18px; } .stage::before { right: -18px; }
+      .stage h3 { font-size: 18px; min-height: 51px; } .stage p { min-height: 104px; }
+      .collaboration-map { gap: 42px; } .partner::after { right: -34px; }
+      .my-role { padding: 24px 20px; } .my-role h3 { font-size: 22px; }
+      .my-role::after { right: -21px; width: 21px; } .teams::before { left: -22px; }
+      .team { padding-inline: 14px; grid-template-columns: 24px 1fr; gap: 8px; }
+      .team::before { width: 19px; left: -22px; }
+      .evidence-grid { gap: 30px 22px; } .evidence { grid-column: span 3; }
+      .outcome h3 { font-size: 21px; } .outcome { padding-inline: 20px; }
+    }
+    @media (max-width: 760px) {
+      html { scroll-padding-top: 104px; }
+      .wrap { width: calc(100% - 36px); }
+      .topbar { flex-direction: column; align-items: stretch; gap: 0; padding: 12px 18px 0; }
+      .brand { font-size: 12px; } .brand-mark { width: 24px; height: 24px; }
+      .topnav { width: 100%; gap: 21px; } .topnav a { font-size: 11px; }
+      .hero-inner { padding-block: 38px 28px; }
+      .hero::before { background-image: linear-gradient(90deg, #102b24ef 0%, #102b24e0 50%, #102b2490 100%), url("../../works/covers/ai-partnership.jpg"); background-position: center, 62% center; }
+      h1 { font-size: 34px; line-height: 1.3; }
+      .eyebrow { font-size: 10px; margin-bottom: 16px; }
+      .hero-copy { font-size: 14px; margin-top: 20px; }
+      .hero-meta { margin-top: 20px; gap: 8px 18px; font-size: 10px; }
+      .hero-foot { margin-top: 25px; padding-top: 12px; gap: 16px; }
+      .hero-foot p { max-width: 190px; font-size: 10px; } .hero-foot a { font-size: 11px; gap: 8px; flex-shrink: 0; }
+      .confidential-inner { grid-template-columns: 1fr; padding-block: 21px; gap: 12px; }
+      .confidential-label { font-size: 18px; }
+      .confidential-label small { display: none; }
+      .confidential-copy strong { font-size: 14px; } .confidential-copy p { font-size: 11px; }
+      .section { padding-block: 50px; }
+      .section-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 28px; }
+      .section-intro { font-size: 14px; } h2 { font-size: 29px; }
+      .index { font-size: 10px; margin-bottom: 10px; }
+      .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 24px; }
+      .work-item { padding-top: 17px; } .work-number { font-size: 33px; margin-bottom: 12px; }
+      .work-item h3 { font-size: 19px; } .work-item p { font-size: 12px; margin-top: 8px; }
+      .timeline { grid-template-columns: 1fr; gap: 0; }
+      .stage { padding: 0 0 30px 63px; margin-left: 9px; border-left: 2px solid var(--accent); }
+      .stage:last-child { padding-bottom: 0; }
+      .stage::before { display: none; }
+      .stage:not(:last-child)::after { content: "↓"; left: -11px; right: auto; top: auto; bottom: 5px; padding: 0; font-size: 22px; }
+      .stage-top strong { position: absolute; left: 15px; top: 3px; font-size: 25px; }
+      .stage-top span { font-size: 10px; }
+      .stage h3 { margin-top: 7px; font-size: 20px; min-height: 0; }
+      .stage p { min-height: 0; margin-top: 10px; font-size: 13px; }
+      .stage-output { min-height: 0; padding-block: 12px 0; margin-top: 12px; }
+      .stage a { margin-top: 8px; font-size: 11px; }
+      .collaboration-map { grid-template-columns: 1fr; gap: 38px; padding: 0; }
+      .partner { padding-block: 19px; } .partner h3 { font-size: 23px; }
+      .map-label { margin-bottom: 10px; }
+      .partner::after { content: "↕"; top: auto; bottom: -36px; left: 28px; right: auto; transform: none; }
+      .my-role { padding: 24px; } .my-role h3 { font-size: 24px; }
+      .my-role h3 br { display: none; }
+      .my-role ul { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 15px; }
+      .my-role li { font-size: 12px; }
+      .my-role::after { top: 100%; right: auto; left: 40px; width: 1px; height: 38px; }
+      .teams { margin-left: 62px; }
+      .teams::before { top: 0; left: -22px; bottom: 47px; }
+      .team { grid-template-columns: 25px 1fr; min-height: 94px; padding: 15px 13px; }
+      .team h4 { font-size: 14px; } .team p { font-size: 11px; }
+      .map-note { margin-top: 25px; font-size: 11px; }
+      .followup-row { grid-template-columns: 1fr; gap: 10px; padding-block: 22px; }
+      .followup-row.header { display: none; }
+      .followup-row p { display: grid; grid-template-columns: 68px 1fr; gap: 15px; font-size: 12px; }
+      .followup-label { display: inline; color: var(--muted); font-size: 11px; }
+      .records { grid-template-columns: 1fr; gap: 20px; }
+      .record { display: grid; grid-template-columns: 100px 1fr; gap: 18px; }
+      .record h4 { font-size: 14px; } .record p { margin: 0; }
+      .evidence-notice { display: block; padding: 15px 17px; margin-bottom: 27px; }
+      .evidence-notice p { margin-top: 6px; font-size: 11px; }
+      .evidence-grid { grid-template-columns: 1fr; gap: 30px; }
+      .evidence, .evidence:nth-child(-n+2) { grid-column: auto; }
+      .evidence-heading { padding-bottom: 9px; }
+      .evidence figcaption { margin-top: 12px; padding-top: 12px; }
+      .outcome-grid { grid-template-columns: 1fr; }
+      .outcome, .outcome:first-child { padding: 23px 0; }
+      .outcome + .outcome { border-left: 0; border-top: 1px solid #ffffff42; }
+      .outcome h3 { margin-top: 10px; font-size: 23px; } .outcome p { margin-top: 8px; }
+      .contribution { display: block; margin-top: 25px; } .contribution p { margin-top: 10px; font-size: 12px; }
+      .footer .wrap { flex-direction: column; align-items: flex-start; gap: 5px; }
+      .lightbox { width: calc(100% - 16px); height: calc(100dvh - 24px); }
+      .lightbox-head { padding: 10px 12px; gap: 12px; } .lightbox-head h2 { font-size: 14px; }
+      .lightbox-disclosure { padding: 8px 12px; font-size: 11px; }
+      .lightbox-visual { padding: 8px; }
+      .lightbox-footer { gap: 10px; padding: 12px; } .lightbox-caption p { font-size: 11px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+  <link rel="stylesheet" href="../ai-news-dashboard/case-study-workspace.css">
+  <link rel="stylesheet" href="../project-workspace.css">
+  <link rel="stylesheet" href="../market-workspace.css">
+</head>
+<body>
+  <a class="skip-link" href="#overview">跳至项目内容</a>
+  <header class="topbar">
+    <a class="brand" href="../../index.html" aria-label="返回作品集首页"><span class="brand-mark">SL</span><span>Shiyi Li · B2B Sales</span></a>
+    <nav class="topnav" aria-label="页面导航">
+      <a href="#overview">我的工作</a><a href="#journey">合作路径</a><a href="#collaboration">团队协作</a><a href="#evidence">过程材料</a><a href="#outcome">过程产出</a><a class="privacy-link" href="#confidential">材料说明</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" aria-labelledby="project-title">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">PROJECT 01 / CUSTOMER PARTNERSHIP · AI EDUCATION</p>
+        <h1 id="project-title">AI 教育产品<br>客户合作与试点推进</h1>
+        <p class="hero-copy">协助高校及东南亚客户合作，将需求确认、产品演示、试用反馈与协议流程衔接起来，跟进资料交接及后续使用问题。</p>
+        <div class="hero-meta"><span>2024.10–2025.05</span><span>北京领知玄华智能科技有限公司</span><span>商务助理实习生</span></div>
+        <div class="hero-foot"><p>客户需求 / 产品演示 / 协议跟进 / 试点协同</p><a href="#journey">查看合作路径 <span aria-hidden="true">↓</span></a></div>
+      </div>
+    </section>
+    <aside class="confidential" id="confidential" aria-labelledby="confidential-title">
+      <div class="wrap confidential-inner">
+        <strong class="confidential-label" id="confidential-title">材料与保密说明<small>WORK MATERIALS / DISCLOSURE</small></strong>
+        <div class="confidential-copy"><strong>仅展示已有公开或已脱敏的工作材料，未公开信息不作展示。</strong><p>材料用于说明沟通与流程支持，不代表个人独立成交；企业背景与产品方向来自公开渠道。</p></div>
+      </div>
+    </aside>
+
+    <div class="band">
+      <section class="wrap section" id="overview" aria-labelledby="overview-title">
+        <div class="section-head">
+          <div><p class="index">01 / 项目概览</p><h2 id="overview-title">把需求与反馈<br>转为下一步行动</h2></div>
+          <div class="section-intro"><p>高校及东南亚合作涉及产品使用需求、试用安排和合作条件，需要客户、产品与业务团队逐项确认。</p><p>我的工作是整理客户反馈、准备产品与合作资料，配合演示和试点，并跟进协议流转、交接及使用问题。</p></div>
+        </div>
+        <div class="work-grid">
+          <article class="work-item"><span class="work-number">01</span><h3>客户需求与合作跟进</h3><p>通过邮件和会议记录需求、反馈及待办，维护客户台账，协助确认试用安排和合作条件。</p></article>
+          <article class="work-item"><span class="work-number">02</span><h3>产品说明与演示支持</h3><p>准备产品介绍和合作方案，提前落实参会人员、演示账号与培训资料，记录试用反馈。</p></article>
+          <article class="work-item"><span class="work-number">03</span><h3>中英文协议流程支持</h3><p>核对主体、服务内容、双方职责及付款安排，整理修改意见，跟踪版本与审批、盖章、归档。</p></article>
+          <article class="work-item"><span class="work-number">04</span><h3>试点与项目交接</h3><p>会后明确负责人和完成时间，协调产品团队处理使用问题，按周跟进进度并配合资料交接。</p></article>
+        </div>
+      </section>
+    </div>
+
+    <div class="band soft">
+      <section class="wrap section" id="journey" aria-labelledby="journey-title">
+        <div class="section-head">
+          <div><p class="index">02 / 客户合作路径</p><h2 id="journey-title">从需求确认<br>到试点持续跟进</h2></div>
+          <p class="section-intro">每次沟通都落实到下一步、负责人和时间。试用反馈回到客户台账，协议与交接资料记录已确认条件，后续问题继续跟进。</p>
+        </div>
+        <ol class="timeline" aria-label="四阶段客户合作路径">
+          <li class="stage"><div class="stage-top"><strong>01</strong><span>NEEDS</span></div><h3>需求与条件确认</h3><p>整理邮件及会议反馈，协助确认产品使用需求、试用安排与合作条件，记录待确认事项。</p><div class="stage-output"><small>过程产出</small><strong>客户台账 / 沟通纪要</strong></div><a href="#evidence-01">信息同步记录 <span aria-hidden="true">↗</span></a></li>
+          <li class="stage"><div class="stage-top"><strong>02</strong><span>DEMO & FEEDBACK</span></div><h3>产品说明与试用反馈</h3><p>准备产品介绍与合作方案，配合演示、试点及会议，记录客户反馈，明确后续回应事项。</p><div class="stage-output"><small>过程产出</small><strong>演示资料 / 反馈与行动清单</strong></div><a href="#university">高校演示与试点 <span aria-hidden="true">↗</span></a></li>
+          <li class="stage"><div class="stage-top"><strong>03</strong><span>AGREEMENT</span></div><h3>协议版本与流程跟进</h3><p>检查中英文协议主体、服务内容、双方职责和付款安排，汇总修改意见，配合审批及签署资料流转。</p><div class="stage-output"><small>过程产出</small><strong>修改意见 / 版本与流程记录</strong></div><a href="#evidence-04">文件跟进记录 <span aria-hidden="true">↗</span></a></li>
+          <li class="stage"><div class="stage-top"><strong>04</strong><span>HANDOFF & FOLLOW-UP</span></div><h3>交接与持续问题跟进</h3><p>归档合作资料，整理负责人、时间和未完成事项；按周跟进使用问题，将新反馈补充到台账。</p><div class="stage-output"><small>过程产出</small><strong>交接清单 / 周进度与后续待办</strong></div><a href="#outcome">查看过程产出 <span aria-hidden="true">↗</span></a></li>
+        </ol>
+      </section>
+    </div>
+
+    <div class="band">
+      <section class="wrap section" id="collaboration" aria-labelledby="collaboration-title">
+        <div class="section-head">
+          <div><p class="index">03 / 跨团队协作</p><h2 id="collaboration-title">把客户问题<br>交给对应团队回应</h2></div>
+          <p class="section-intro">客户反馈涉及产品使用、试用准备及合作文件。我整理问题、同步相关团队，并将回复和下一步更新到沟通记录。</p>
+        </div>
+        <div class="collaboration-map" aria-label="客户需求与反馈通过沟通记录衔接产品、业务、财务和项目团队">
+          <article class="partner"><span class="map-label">CUSTOMERS & PARTNERS</span><h3>高校及东南亚客户</h3><p>使用需求与试用反馈<br>合作条件与文件意见</p></article>
+          <article class="my-role"><span class="map-label">MY CONTRIBUTION / 我的工作</span><h3>需求整理<br>与合作跟进</h3><ul><li>维护客户台账与纪要</li><li>准备资料、同步问题</li><li>跟进版本与下一步</li></ul></article>
+          <div class="teams">
+            <article class="team"><span class="mono">01</span><div><h4>产品团队</h4><p>产品说明、演示准备与使用问题处理</p></div></article>
+            <article class="team"><span class="mono">02</span><div><h4>业务团队</h4><p>合作条件、方案资料与协议修改确认</p></div></article>
+            <article class="team"><span class="mono">03</span><div><h4>财务团队</h4><p>付款安排核对与审批流程配合</p></div></article>
+            <article class="team"><span class="mono">04</span><div><h4>项目相关负责人</h4><p>试点节点、资料交接及未完成事项跟进</p></div></article>
+          </div>
+        </div>
+        <p class="map-note">专业问题与合作条件由对应团队确认；我协助整理信息、准备资料、记录责任人与时间，并跟进回复和流程进度。</p>
+      </section>
+    </div>
+
+    <div class="band soft">
+      <section class="wrap section" id="followup" aria-labelledby="followup-title">
+        <div class="section-head">
+          <div><p class="index">04 / 关键确认事项</p><h2 id="followup-title">每个问题<br>对应记录与下一步</h2></div>
+          <p class="section-intro">从需求、演示和试用反馈，到合作文件与交接安排，将讨论内容记录清楚，避免沟通结束后缺少下一步。</p>
+        </div>
+        <div class="followup-table" role="table" aria-label="客户合作事项与参与工作">
+          <div class="followup-row header" role="row"><span role="columnheader">确认事项</span><span role="columnheader">沟通内容</span><span role="columnheader">我的工作</span></div>
+          <div class="followup-row" role="row"><h3 role="rowheader"><span class="mono">01</span>客户需求</h3><p role="cell"><span class="followup-label">沟通内容</span><span>产品使用场景、客户反馈与合作条件。</span></p><p role="cell"><span class="followup-label">我的工作</span><span>整理邮件及会议要点，维护客户台账，跟进待确认问题。</span></p></div>
+          <div class="followup-row" role="row"><h3 role="rowheader"><span class="mono">02</span>演示与试用</h3><p role="cell"><span class="followup-label">沟通内容</span><span>参会人员、演示账号、培训资料与使用问题。</span></p><p role="cell"><span class="followup-label">我的工作</span><span>协助会前准备，记录试用反馈，协调产品团队回应问题。</span></p></div>
+          <div class="followup-row" role="row"><h3 role="rowheader"><span class="mono">03</span>协议与审批</h3><p role="cell"><span class="followup-label">沟通内容</span><span>中英文合同主体、服务内容、双方职责和付款安排。</span></p><p role="cell"><span class="followup-label">我的工作</span><span>检查信息、汇总修改意见，跟踪版本，配合审批、盖章与归档。</span></p></div>
+          <div class="followup-row" role="row"><h3 role="rowheader"><span class="mono">04</span>交接与后续行动</h3><p role="cell"><span class="followup-label">沟通内容</span><span>已确认安排、资料交接、问题负责人及完成时间。</span></p><p role="cell"><span class="followup-label">我的工作</span><span>整理纪要和未完成事项，按周跟进进度，将新反馈补充到台账。</span></p></div>
+        </div>
+        <div class="records" aria-label="客户合作记录">
+          <article class="record"><h4>客户台账</h4><p>需求、沟通进展、待确认事项与下一步安排。</p></article>
+          <article class="record"><h4>行动与问题清单</h4><p>记录责任人和时间，持续跟进产品使用问题。</p></article>
+          <article class="record"><h4>文件与交接记录</h4><p>保留协议修改意见、版本、审批及归档进度。</p></article>
+        </div>
+      </section>
+    </div>
+
+    <div class="band">
+      <section class="wrap section" id="evidence" aria-labelledby="evidence-title">
+        <div class="section-head">
+          <div><p class="index">05 / WORKING EVIDENCE</p><h2 id="evidence-title">沟通与文件材料</h2></div>
+          <p class="section-intro">五份已有过程材料按时间呈现信息同步、方案反馈与文件流转，说明对应的沟通工作。文件发送记录不作为签署或成交证明。</p>
+        </div>
+        <aside class="evidence-notice" aria-label="过程材料保密提示"><strong>已有脱敏材料</strong><p>保留已脱敏的图片，遮盖的未公开信息不作展示；材料呈现沟通与文件跟进过程，未公开合作信息已遮盖。</p></aside>
+        <div class="evidence-grid">
+          <figure class="evidence" id="evidence-01"><div class="evidence-heading"><span class="mono">RECORD 01</span><time datetime="2025-01-14">2025.01.14</time></div><a class="evidence-frame" href="./assets/evidence-latest-01.jpg" target="_blank" rel="noopener" aria-label="查看初步信息同步原图" title="查看原图"><img src="./assets/evidence-latest-01.jpg" alt="已脱敏的初步信息同步记录，2025年1月14日" loading="lazy" width="1710" height="844"></a><figcaption><strong>初步信息同步</strong><p>同步已有合作信息，整理需要进一步确认的问题。</p></figcaption></figure>
+          <figure class="evidence" id="evidence-02"><div class="evidence-heading"><span class="mono">RECORD 02</span><time datetime="2025-01-15">2025.01.15</time></div><a class="evidence-frame" href="./assets/evidence-latest-02.jpg" target="_blank" rel="noopener" aria-label="查看方案反馈与内部讨论原图" title="查看原图"><img src="./assets/evidence-latest-02.jpg" alt="已脱敏的方案反馈与内部讨论记录，2025年1月15日" loading="lazy" width="1569" height="765"></a><figcaption><strong>方案反馈与内部讨论</strong><p>围绕合作方案同步意见，跟进内部反馈。</p></figcaption></figure>
+          <figure class="evidence" id="evidence-03"><div class="evidence-heading"><span class="mono">RECORD 03</span><time datetime="2025-02-05">2025.02.05</time></div><a class="evidence-frame" href="./assets/evidence-latest-03.jpg" target="_blank" rel="noopener" aria-label="查看商务事项沟通原图" title="查看原图"><img src="./assets/evidence-latest-03.jpg" alt="已脱敏的商务事项沟通记录，2025年2月5日" loading="lazy" width="1692" height="1336"></a><figcaption><strong>商务事项沟通</strong><p>整理沟通意见，衔接后续合作相关事项。</p></figcaption></figure>
+          <figure class="evidence" id="evidence-04"><div class="evidence-heading"><span class="mono">RECORD 04</span><time datetime="2025-02-20">2025.02.20</time></div><a class="evidence-frame" href="./assets/evidence-latest-04.jpg" target="_blank" rel="noopener" aria-label="查看文件核对与流程跟进原图" title="查看原图"><img src="./assets/evidence-latest-04.jpg" alt="已脱敏的文件发送与信息同步记录，2025年2月20日" loading="lazy" width="1688" height="942"></a><figcaption><strong>文件核对与流程跟进</strong><p>发送合作文件，同步待整理的信息与相关问题。</p></figcaption></figure>
+          <figure class="evidence" id="evidence-05"><div class="evidence-heading"><span class="mono">RECORD 05</span><time datetime="2025-02-28">2025.02.28</time></div><a class="evidence-frame" href="./assets/evidence-latest-05.jpg" target="_blank" rel="noopener" aria-label="查看文件整理与信息同步原图" title="查看原图"><img src="./assets/evidence-latest-05.jpg" alt="已脱敏的文件整理、发送与存档记录，2025年2月28日" loading="lazy" width="1706" height="1238"></a><figcaption><strong>文件整理与信息同步</strong><p>整理并发送相关文件，配合查阅与存档。</p></figcaption></figure>
+        </div>
+      </section>
+    </div>
+
+    <div class="band outcomes-band">
+      <section class="wrap section" id="outcome" aria-labelledby="outcome-title">
+        <div class="section-head"><div><p class="index">06 / 过程产出</p><h2 id="outcome-title">让合作信息<br>可以持续跟进</h2></div><p class="section-intro">我的产出围绕客户记录、演示支持与文件流转展开：把需求记录清楚，把后续行动落实到人和时间，把新反馈接回客户跟进。</p></div>
+        <div class="outcome-grid">
+          <article class="outcome"><span>01 / CUSTOMER RECORDS</span><h3>客户台账与沟通纪要</h3><p>汇总需求、反馈与待确认事项，保留下一步安排，支持持续合作沟通。</p></article>
+          <article class="outcome"><span>02 / DEMO SUPPORT</span><h3>演示与试点支持资料</h3><p>准备产品介绍、账号与培训资料，记录使用问题及相关负责人的回应。</p></article>
+          <article class="outcome"><span>03 / DOCUMENTS & HANDOFF</span><h3>合作文件与交接清单</h3><p>整理协议修改意见、版本及流程进度，归档合作资料，衔接后续项目待办。</p></article>
+        </div>
+        <figure class="signing-evidence">
+          <a class="evidence-frame" href="./assets/06-signing.jpg" target="_blank" rel="noopener" aria-label="查看合作签约仪式现场原图" title="查看原图"><img src="./assets/06-signing.jpg" alt="已有的已脱敏合作签约仪式现场合影" loading="lazy" width="1188" height="573"></a>
+          <figcaption><strong>团队合作的阶段性节点</strong><p>保留已有签约仪式材料，呈现团队合作背景；个人贡献为资料准备与流程跟进。</p></figcaption>
+        </figure>
+        <div class="contribution"><strong>我的工作</strong><p>协助客户沟通、产品与合作资料准备、协议版本和流程跟进，配合签署资料及项目交接，持续记录试点反馈与后续行动。</p></div>
+      </section>
+    </div>
+
+    <div class="band">
+      <section class="wrap section" id="university" aria-labelledby="university-title">
+        <div class="section-head"><div><p class="index">高校合作 / 演示与试点</p><h2 id="university-title">把演示反馈<br>变成具体待办</h2></div><p class="section-intro">协助确认高校需求、试用安排与合作条件，支持产品演示及合作会议。会后把使用反馈落实到责任人和时间，再跟进进展。</p></div>
+        <div class="work-grid">
+          <article class="work-item"><h3>会前准备</h3><p>落实参会人员、演示账号与培训材料，核对产品介绍及待确认需求。</p></article>
+          <article class="work-item"><h3>演示与试用配合</h3><p>支持产品演示及试点，整理客户反馈与使用问题，同步产品团队。</p></article>
+          <article class="work-item"><h3>会后行动跟进</h3><p>整理纪要，明确负责人与完成时间，按周跟进进度及未完成事项。</p></article>
+          <article class="work-item"><h3>反馈回到客户台账</h3><p>将产品团队回应和新反馈补充到记录，准备下一次合作沟通与资料交接。</p></article>
+        </div>
+        <figure style="margin-top:32px"><img src="../../works/covers/education-pilot.png" alt="已有的高校交流活动场景材料" loading="lazy" style="max-width:100%;height:auto"><figcaption style="margin-top:12px;color:var(--muted);font-size:12px">已有高校交流场景材料，用于呈现活动背景。</figcaption></figure>
+      </section>
+    </div>
+    <div class="band soft">
+      <section class="wrap section" id="sop" aria-labelledby="sop-title">
+        <div class="section-head"><div><p class="index">工作方法 / AI + SOP</p><h2 id="sop-title">把重复工作<br>整理为执行清单</h2></div><p class="section-intro">利用 AI 辅助梳理客户跟进和商务资料准备中的重复工作，形成 SOP、检查清单与常用模板。合作条件、合同信息和对外资料经人工核对后使用。</p></div>
+        <div class="work-grid">
+          <article class="work-item"><h3>客户跟进模板</h3><p>记录需求、邮件和会议要点、待确认问题及下一步安排。</p></article>
+          <article class="work-item"><h3>演示准备清单</h3><p>检查参会人员、演示账号、产品介绍、培训资料与附件版本。</p></article>
+          <article class="work-item"><h3>合同流转清单</h3><p>核对主体、服务内容、双方职责与付款安排，跟踪版本和审批归档。</p></article>
+          <article class="work-item"><h3>项目交接模板</h3><p>整理资料、负责人、完成时间、使用问题与周进度，将反馈接回台账。</p></article>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer class="footer"><div class="wrap"><span>Shiyi Li · B2B Sales Portfolio</span><a href="../../index.html">返回项目首页 ↑</a></div></footer>
+
+  <dialog class="lightbox" aria-labelledby="lightbox-title" aria-describedby="lightbox-disclosure">
+    <header class="lightbox-head"><h2 id="lightbox-title">项目材料</h2><button class="icon-button" id="lightbox-close" type="button" aria-label="关闭大图" title="关闭大图" autofocus>×</button></header>
+    <p class="lightbox-disclosure" id="lightbox-disclosure">已脱敏材料 · 未公开信息因保密要求不作展示</p>
+    <div class="lightbox-visual"><img alt="" hidden></div>
+    <footer class="lightbox-footer"><button class="icon-button" id="lightbox-prev" type="button" aria-label="上一张材料" title="上一张材料">←</button><div class="lightbox-caption" aria-live="polite"><p id="lightbox-caption"></p><a id="lightbox-original" target="_blank" rel="noopener">打开原图 ↗</a></div><button class="icon-button" id="lightbox-next" type="button" aria-label="下一张材料" title="下一张材料">→</button></footer>
+  </dialog>
+  <script>
+    const lightbox = document.querySelector('.lightbox');
+    const links = [...document.querySelectorAll('.evidence-frame')];
+    const preview = lightbox.querySelector('img');
+    const previous = document.querySelector('#lightbox-prev');
+    const next = document.querySelector('#lightbox-next');
+    let activeIndex = 0;
+    let opener = null;
+    let previousOverflow = '';
+
+    function showImage(index) {
+      activeIndex = index;
+      const link = links[index];
+      const figure = link.closest('figure');
+      preview.src = link.href;
+      preview.alt = link.querySelector('img').alt;
+      preview.hidden = false;
+      document.querySelector('#lightbox-title').textContent = figure.querySelector('figcaption strong').textContent;
+      const detail = figure.querySelector('time')?.textContent || figure.querySelector('figcaption p').textContent;
+      document.querySelector('#lightbox-caption').textContent = `${String(index + 1).padStart(2, '0')} / ${String(links.length).padStart(2, '0')} · ${detail}`;
+      document.querySelector('#lightbox-original').href = link.href;
+      previous.disabled = index === 0;
+      next.disabled = index === links.length - 1;
+    }
+
+    // Image links remain usable when dialog support or JavaScript is unavailable.
+    if (typeof lightbox.showModal === 'function') {
+      links.forEach((link, index) => link.addEventListener('click', (event) => {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        opener = link;
+        previousOverflow = document.body.style.overflow;
+        showImage(index);
+        lightbox.showModal();
+        document.body.style.overflow = 'hidden';
+      }));
+    }
+    document.querySelector('#lightbox-close').addEventListener('click', () => lightbox.close());
+    previous.addEventListener('click', () => { if (activeIndex > 0) showImage(activeIndex - 1); });
+    next.addEventListener('click', () => { if (activeIndex < links.length - 1) showImage(activeIndex + 1); });
+    lightbox.addEventListener('keydown', (event) => {
+      if (event.key === 'Tab') {
+        const controls = [...lightbox.querySelectorAll('button:not(:disabled), a[href]')];
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+      if (event.key === 'ArrowLeft' && activeIndex > 0) { event.preventDefault(); showImage(activeIndex - 1); }
+      if (event.key === 'ArrowRight' && activeIndex < links.length - 1) { event.preventDefault(); showImage(activeIndex + 1); }
+    });
+    lightbox.addEventListener('click', (event) => {
+      const box = lightbox.getBoundingClientRect();
+      if (event.target === lightbox && (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom)) lightbox.close();
+    });
+    lightbox.addEventListener('close', () => {
+      document.body.style.overflow = previousOverflow;
+      preview.hidden = true;
+      preview.removeAttribute('src');
+      if (opener) opener.focus({ preventScroll: true });
+    });
+    if ('IntersectionObserver' in window) {
+      const navLinks = [...document.querySelectorAll('.topnav a')];
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+        if (!visible) return;
+        navLinks.forEach(link => {
+          if (link.hash === '#' + visible.target.id) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      }, { rootMargin: '-110px 0px -55% 0px' });
+      navLinks.forEach(link => { const target = document.querySelector(link.hash); if (target) observer.observe(target); });
+    }
+  </script>
+  <script src="../ai-news-dashboard/lucide.min.js"></script>
+  <script src="../project-workspace.js" data-project="partnership"></script>
+</body>
+</html>
